@@ -13,12 +13,6 @@ class Controllerlogar{
 
 		return $logar;
 
-		/*
-
-		$this->nome= $logar->nomes;
-		$this->email= $logar->email;
-		$this->empresa= $logar->empresa; */
-
 	}
 
 
