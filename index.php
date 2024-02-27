@@ -3,7 +3,7 @@
 error_reporting(E_ALL); 
 /* Habilita a exibição de erros */
 ini_set("display_errors", 1); 
-
+include('./model/conf/definicao.php');
 $url = ($_SERVER['REQUEST_URI']=="/"?"/index":$_SERVER['REQUEST_URI']);
 $u = explode('/',$url);
 $pagina = false;
@@ -24,7 +24,7 @@ if(file_exists('./view/View'.$classe.".php") == true)
 
 }
 
-if($pagina == false){
+/*if($pagina == false){
 	header('Location: 404.php');
-}
+}*/
 ?>    
