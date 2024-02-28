@@ -15,11 +15,12 @@ $painelcliente = ControllerPainelCliente::clientes();
 <body>
 	<div id="conteudo" name="conteudo">
 		<?php
-			/*echo "<pre>";
+		/*
+			echo "<pre>";
 			print_r($painelcliente);
 			echo "</pre>";
 
-			/*/
+			///*/
 
 			foreach ( $painelcliente as $clientes ) {
 				echo "<div id='divdados'> 
@@ -28,7 +29,7 @@ $painelcliente = ControllerPainelCliente::clientes();
 						<span > {$clientes->empresa} </span>
 						<span > {$clientes->email} </span>
 						<span > {$clientes->senha} </span>  </div>\n";
-			}
+			}//*/
 		?>
 	</div>
 </body>

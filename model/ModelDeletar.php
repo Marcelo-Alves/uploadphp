@@ -1,5 +1,6 @@
 <?php
-include_once 'mysql.php';
+include_once('mysql.php');
+include_once('ModelCache.php');
 class deletar  {   
 
     public static function deletarBanco($tabela,$where) {
@@ -9,6 +10,8 @@ class deletar  {
 			
             $rs = mysql::conexao()->prepare($sql);  
             $rs->execute();
+
+            Cache::GravaTudo($tabela);
             
         } catch (Exception $ex) {
             echo $ex->getMessage() . " Erro sql ". $sql;

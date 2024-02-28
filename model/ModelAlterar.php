@@ -1,5 +1,6 @@
 <?php
-include_once 'mysql.php';
+include_once ('mysql.php');
+include_once('ModelCache.php');
 class alterar  {   
 
     public static function alterarBanco($campos,$tabela,$where) {
@@ -9,6 +10,8 @@ class alterar  {
             $rs->execute();
 
             //echo  $sql;
+            
+            Cache::GravaTudo($tabela);
             
         } catch (Exception $ex) {
             echo $ex->getMessage() . " Erro sql ". $sql;
