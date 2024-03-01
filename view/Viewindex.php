@@ -22,7 +22,7 @@ if(isset($_POST)){
 </head>
 <body>
 	<div id="conteudo" name="conteudo">
-		<form method="post" action="logar">
+		<form method="post" action="logar/logar">
 			<label id="titulo" name="titulo">
 				<h3>Formulário de Login do cliente</h3>
 			</label>

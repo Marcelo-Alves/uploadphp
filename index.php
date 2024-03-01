@@ -7,21 +7,25 @@ include('./model/conf/definicao.php');
 $url = ($_SERVER["REQUEST_URI"]=="/"?"/index":$_SERVER["REQUEST_URI"]);
 $u = explode('/',$url);
 $pagina = false;
-
-$classe  = $u[1];
+$controller = "Controller".$u[1];
+$classe = $u[1];
+$view = "View".$u[1];
 $metodo = (empty($u[2])?"index":$u[2]);
 
-if(file_exists('./controller/Controller'.$classe.".php") == true)
+if(file_exists('./controller/'.$controller.".php") == true)
 {
-	include_once('./controller/Controller'.$classe.".php") ;
+	include_once('./controller/'.$controller.".php") ;
+	if(method_exists($controller,$metodo) == true)
+	{
+		$controller::$metodo();
+	}
 	$pagina = true;
 }
 
-if(file_exists('./view/View'.$classe.".php") == true)
+if(file_exists('./view/'.$view.".php") == true)
 {	
-	include_once('./view/View'.$classe.".php" );
+	include_once('./view/'.$view.".php" );
 	$pagina = true;
-
 }
 
 /*if($pagina == false){

@@ -6,7 +6,6 @@ class Cache  {
     public static function GravaTudo($tabela) {
         try {
             $cache = json_encode(ModelBusca::buscaTudo('*',$tabela,''));
-
             $arquivo = fopen("./view/cache/cache".$tabela.".json",'w');
             fwrite($arquivo, $cache);
             fclose($arquivo);

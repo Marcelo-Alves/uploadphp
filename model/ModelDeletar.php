@@ -5,17 +5,12 @@ class deletar  {
 
     public static function deletarBanco($tabela,$where) {
         try {
-            $sql= "delete from $tabela WHERE $where;";			
-			//echo $sql;
-			
+            $sql= "delete from $tabela WHERE $where;";	
             $rs = mysql::conexao()->prepare($sql);  
             $rs->execute();
-
             Cache::GravaTudo($tabela);
-            
         } catch (Exception $ex) {
             echo $ex->getMessage() . " Erro sql ". $sql;
         }       
     }
-    
 }

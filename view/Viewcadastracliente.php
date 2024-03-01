@@ -6,7 +6,7 @@
     <title>Tela de cadastro de Cliente</title>
 </head>
 <body>
-    <form action="Cadastrarcliente" method="post">
+    <form action="Cadastrarcliente/cadastrar" method="post">
         Nome: <input type="text" name="txtnome" id="txtnome"><br>
         empresa: <input type="text" name="txtempresa" id="txtempresa"><br>
         email: <input type="text" name="txtemail" id="txtemail"><br>

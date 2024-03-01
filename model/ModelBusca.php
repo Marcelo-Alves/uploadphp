@@ -8,7 +8,6 @@ class ModelBusca  {
             $rs = mysql::conexao()->prepare($sql);  
             $rs->execute();
             $dados=$rs->fetchAll(PDO::FETCH_OBJ);
-            //echo $sql;
             return $dados;
         } catch (Exception $ex) {
             echo $ex->getMessage(). " Erro sql ". $sql;
@@ -27,9 +26,6 @@ class ModelBusca  {
     }
     public static function buscacache($tipocache){
         $json_dados = json_decode(file_get_contents("./view/cache/cache$tipocache.json"));
-
         return $json_dados;
-
-
     }
 }

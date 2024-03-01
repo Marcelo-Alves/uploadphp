@@ -15,5 +15,4 @@ class inserir  {
             echo " Erro sql ". $sql;
         }        
     }
-    
 }

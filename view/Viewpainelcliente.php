@@ -8,29 +8,34 @@ $painelcliente = ControllerPainelCliente::clientes();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Lista de Cliente</title>
 	<style type="text/css">
-		#divdados{width: 500px;border: 1px solid #000}
+		#divdados{width: 700px;border: 1px solid #000}
 		.lbl{width: 200px;background-color:green;display:inline;}
 	</style>
+	<script>
+		function deletar(nome,id){
+			confirmarcao = confirm("Deseja excluir o cadastro de "+nome+"?")
+			if(confirmarcao == true){
+				window.location.href = '/Cadastrarcliente/deletar/'+id
+			}
+		}
+
+	</script>
 </head>
 <body>
 	<div id="conteudo" name="conteudo">
 		<?php
-		/*
-			echo "<pre>";
-			print_r($painelcliente);
-			echo "</pre>";
-
-			///*/
-
 			foreach ( $painelcliente as $clientes ) {
 				echo "<div id='divdados'> 
 						<span class='lbl' >
 						{$clientes->nome}</span>
 						<span > {$clientes->empresa} </span>
 						<span > {$clientes->email} </span>
-						<span > {$clientes->senha} </span>  </div>\n";
-			}//*/
+						<span > {$clientes->senha} </span>  
+						<span > <a href='alteracliente/{$clientes->id}'> Editar </a></span>
+						<span > <a href='#' onclick=deletar('{$clientes->nome}',{$clientes->id})> Deletar </a> </span>
+						</div>\n";
+			}
 		?>
-	</div>
+	</div> <a href=''></a>
 </body>
 </html>
