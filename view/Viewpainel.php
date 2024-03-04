@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="conteudo" name="conteudo">
-		<form method="post">
+		<form method="post" action="painellogar/logar" >
 			<label id="titulo" name="titulo">
 				<h3>Formulário de Login do Painel de Controle</h3>
 			</label>
@@ -18,7 +18,7 @@
 				Senha: <input type="password" id="txtsenha" name="txtsenha">
 			</label>
 			<label id="lbenviar" name="lbenviar" >
-				<input type="submit" id="btenviar" name="btenviar">
+				<input type="submit" value="Logar" id="btenviar" name="btenviar">
 			</label>
 		</form>
 	</div>

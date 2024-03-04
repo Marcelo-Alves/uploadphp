@@ -1,5 +1,28 @@
 <?php
-$painelcliente = ControllerPainelCliente::clientes();
+include_once ("./controller/Controllerorcamentocliente.php");
+
+$painelcliente = PainelCliente::clientes();
+$painelorcamento = OrcamentoCliente::orcamento();
+
+$orcnome=[];
+$orcmensagem=[];
+$orcimagens=[];
+$orcdata=[];
+$orcrespondido=[];
+
+
+
+foreach($painelorcamento as $orcamento):
+	if($orcamento->idcliente == 1):	
+		$orcnome = $orcamento->nome;
+		$orcmensagem = $orcamento->mensagem;
+		$orcimagens = $orcamento->imagens;
+		$orcdata = $orcamento->data_envio;
+		$orcrespondido = $orcamento->respondido;
+	endif;
+endforeach;
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,14 +40,14 @@ $painelcliente = ControllerPainelCliente::clientes();
 			if(confirmarcao == true){
 				window.location.href = '/Cadastrarcliente/deletar/'+id
 			}
-		}
+		}	
 
 	</script>
 </head>
 <body>
 	<div id="conteudo" name="conteudo">
 		<?php
-			foreach ( $painelcliente as $clientes ) {
+			foreach ( $painelcliente as $clientes ):
 				echo "<div id='divdados'> 
 						<span class='lbl' >
 						{$clientes->nome}</span>
@@ -34,8 +57,22 @@ $painelcliente = ControllerPainelCliente::clientes();
 						<span > <a href='alteracliente/{$clientes->id}'> Editar </a></span>
 						<span > <a href='#' onclick=deletar('{$clientes->nome}',{$clientes->id})> Deletar </a> </span>
 						</div>\n";
-			}
+			endforeach;
 		?>
-	</div> <a href=''></a>
-</body>
+		<hr>
+		<div style="width: 70%;borde:1px solid #000;">
+			<?php
+				echo $orcnome."<br>";
+				echo $orcmensagem."<br>";
+				foreach(explode("|",$orcimagens) as $imagens):
+					echo "<img src='./view/imagens/{$imagens}' width='70px' />";
+				endforeach;
+				echo "<br>";
+				$date1 = DateTime::createFromFormat('Y-m-d', $orcdata);
+				echo $date1->format('d/m/Y')."<br>";
+				echo $orcrespondido."<br>";
+			?>
+		</div>
+	</div> 
+</body> 
 </html>
