@@ -46,10 +46,10 @@
                 $model_valores  = substr($model_valores,0,-1);
                 
                 inserir::inserirBanco('orcamento',$model_campos,$model_valores) ;
-                header("Location: /painelcliente");
+                header("Location: ".PROTOCOLO."/painelcliente/");
                 die();
             }
-            header("Location: /cadastrarcliente/$validar");
+            header("Location: ".PROTOCOLO."/cadastrarcliente/$validar");
             echo $validar;
             return null;
 
@@ -64,7 +64,7 @@
 
             $where ='id="'.$id.'"';
             deletar::deletarBanco("cliente",$where);
-            header("Location: /painelcliente");
+            header("Location: ".PROTOCOLO."/painelcliente");
             die();   
          }
     }

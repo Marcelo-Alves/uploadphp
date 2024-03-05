@@ -19,6 +19,9 @@ class ModelBusca  {
 			$rs = mysql::conexao()->prepare($sql);  
             $rs->execute();
             $dados=$rs->fetchAll(PDO::FETCH_OBJ);
+            if($dados == null){
+                return null;
+            }
             return $dados;
         } catch (Exception $ex) {
             echo $ex->getMessage(). " Erro sql ". $sql;

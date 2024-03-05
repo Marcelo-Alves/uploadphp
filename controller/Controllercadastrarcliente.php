@@ -28,10 +28,10 @@
                 $model_valores  = substr($model_valores,0,-1);
                 
                 inserir::inserirBanco('cliente',$model_campos,$model_valores) ;
-                header("Location: /painelcliente");
+                header("Location: ".PROTOCOLO."/painelcliente");
                 die();
             }
-            header("Location: /cadastrarcliente/$validar");
+            header("Location: ".PROTOCOLO."/cadastrarcliente/$validar");
             return null;
 
         }
@@ -42,15 +42,15 @@
 		    if(is_null($validar)){
                 $campos_alterar = 'nome ="'. strtoupper($_POST['txtnome']).'",'.
                         'email  	    ="'. $_POST['txtemail'].'",'.
-                        'empresa 	        ="'. $_POST['txtempresa'].'",'.	
-                        'senha   	        ="'. $_POST['txtsenha'].'"';
+                        'empresa 	    ="'. $_POST['txtempresa'].'",'.	
+                        'senha   	    ="'. $_POST['txtsenha'].'"';
         
                 $where = 'id="'. $_POST['txtid'].'"';
                 alterar::alterarBanco($campos_alterar,"cliente",$where);
-                header("Location: /painelcliente");
+                header("Location: ".PROTOCOLO."/painelcliente");
                 die();
             }
-            header("Location: /cadastrarcliente/ERRO$validar");
+            header("Location: ".PROTOCOLO."/cadastrarcliente/ERRO$validar");
             return null;
         }
 
@@ -61,7 +61,7 @@
 
             $where ='id="'.$id.'"';
             deletar::deletarBanco("cliente",$where);
-            header("Location: /painelcliente");
+            header("Location: ".PROTOCOLO."/painelcliente");
             die();   
          }
     }

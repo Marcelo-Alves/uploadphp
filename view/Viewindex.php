@@ -22,7 +22,7 @@ if(isset($_POST)){
 </head>
 <body>
 	<div id="conteudo" name="conteudo">
-		<form method="post" action="logar/logar">
+		<form method="post" action="<?php echo PROTOCOLO;?>/logar/logar">
 			<label id="titulo" name="titulo">
 				<h3>Formulário de Login do cliente</h3>
 			</label>
@@ -30,9 +30,16 @@ if(isset($_POST)){
 				<?php
 					$link = explode("/", $_SERVER["REQUEST_URI"]);
 					if(isset($link[2])):
-				?>
-					<div style="border: 1px solid RED;color:red;width: 40%;text-align: center; margin:10px;"> POR FAVOR, PREENCHA TODOS OS CAMPOS</div>
-				<?php
+						if($link[2] == 0):
+					?>
+						<div style="border: 1px solid RED;color:red;width: 40%;text-align: center; margin:10px;"> POR FAVOR, PREENCHA TODOS OS CAMPOS</div>
+					<?php
+						endif;
+						if($link[2] == 1):
+							?>
+								<div style="border: 1px solid RED;color:red;width: 40%;text-align: center; margin:10px;"> LOGIN E SENHA NÃO CADASTRADO</div>
+							<?php
+						endif;
 					endif;
 				?>
 			</div>

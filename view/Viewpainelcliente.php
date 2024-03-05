@@ -1,24 +1,25 @@
 <?php
+session_start();
 include_once ("./controller/Controllerorcamentocliente.php");
 
 $painelcliente = PainelCliente::clientes();
 $painelorcamento = OrcamentoCliente::orcamento();
 
-$orcnome=[];
-$orcmensagem=[];
-$orcimagens=[];
-$orcdata=[];
-$orcrespondido=[];
+$orcamento=[];
 
+foreach($painelcliente as $cliente):
+	if($cliente->id == $_SESSION['id']):
+		
+		$cliid = $cliente->id;
+		$clinome = $cliente->nome;
+		$cliempresa = $cliente->empresa;
+		$cliemail = $cliente->email;
+	endif;
+endforeach;
 
-
-foreach($painelorcamento as $orcamento):
-	if($orcamento->idcliente == 1):	
-		$orcnome = $orcamento->nome;
-		$orcmensagem = $orcamento->mensagem;
-		$orcimagens = $orcamento->imagens;
-		$orcdata = $orcamento->data_envio;
-		$orcrespondido = $orcamento->respondido;
+foreach($painelorcamento as $orcamentos):
+	if($orcamentos->idcliente == $_SESSION['id']):	
+		$orcamento[] = $orcamentos;
 	endif;
 endforeach;
 
@@ -31,46 +32,51 @@ endforeach;
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Lista de Cliente</title>
 	<style type="text/css">
-		#divdados{width: 700px;border: 1px solid #000}
+		#divdados{width: 800px;border: 1px solid #000}
 		.lbl{width: 200px;background-color:green;display:inline;}
+		.titulo{width: 150px;color: #000;font-size: large;}
 	</style>
-	<script>
-		function deletar(nome,id){
-			confirmarcao = confirm("Deseja excluir o cadastro de "+nome+"?")
-			if(confirmarcao == true){
-				window.location.href = '/Cadastrarcliente/deletar/'+id
-			}
-		}	
 
-	</script>
 </head>
 <body>
 	<div id="conteudo" name="conteudo">
 		<?php
-			foreach ( $painelcliente as $clientes ):
 				echo "<div id='divdados'> 
 						<span class='lbl' >
-						{$clientes->nome}</span>
-						<span > {$clientes->empresa} </span>
-						<span > {$clientes->email} </span>
-						<span > {$clientes->senha} </span>  
-						<span > <a href='alteracliente/{$clientes->id}'> Editar </a></span>
-						<span > <a href='#' onclick=deletar('{$clientes->nome}',{$clientes->id})> Deletar </a> </span>
+						{$clinome}</span>
+						<span > {$cliempresa} </span>
+						<span > {$cliemail} </span>
+						<span > <a href='".PROTOCOLO."/alteracliente/{$cliid}'> Editar </a></span>
+						<span > <a href='".PROTOCOLO."/cadastraorcamento'> Adicionar Orçamento </a></span>
+						<span > <a href='".PROTOCOLO."/logar/deslogar'> Sair </a> </span>
+
 						</div>\n";
-			endforeach;
+
 		?>
 		<hr>
-		<div style="width: 70%;borde:1px solid #000;">
+		<div style="width: 70%;border:1px solid #000;">
 			<?php
-				echo $orcnome."<br>";
-				echo $orcmensagem."<br>";
-				foreach(explode("|",$orcimagens) as $imagens):
-					echo "<img src='./view/imagens/{$imagens}' width='70px' />";
+				foreach($orcamento as $orc):
+					echo "<div style='border:2px solid #000' >";
+					echo "NOME DO PROJETO: <div class='titulo'> ".$orc->nome."</div>";
+					echo "<div style='border:1px solid #000' >";
+					echo $orc->mensagem."<br>";
+					echo "</div>";
+					if(!is_null($orc->imagens)):
+						foreach(explode("|",$orc->imagens) as $imagens):
+							
+							echo "<img src='".PROTOCOLO."/view/imagens/{$imagens}' width='70px' />";
+						endforeach;
+						echo "<br>";
+					endif;
+					
+					$date1 = DateTime::createFromFormat('Y-m-d', $orc->data_envio);
+					echo $date1->format('d/m/Y')."<br>";
+					echo $orc->respondido."<br>";
+					echo "</div>";
 				endforeach;
-				echo "<br>";
-				$date1 = DateTime::createFromFormat('Y-m-d', $orcdata);
-				echo $date1->format('d/m/Y')."<br>";
-				echo $orcrespondido."<br>";
+
+				
 			?>
 		</div>
 	</div> 

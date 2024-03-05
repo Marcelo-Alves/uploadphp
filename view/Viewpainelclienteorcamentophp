@@ -31,7 +31,7 @@ $painelcliente = ControllerPainelCliente::clientes();
 						<span > {$clientes->empresa} </span>
 						<span > {$clientes->email} </span>
 						<span > {$clientes->senha} </span>  
-						<span > <a href='alteracliente/{$clientes->id}'> Editar </a></span>
+						<span > <a href='".PROTOCOLO."/alteracliente/{$clientes->id}'> Editar </a></span>
 						<span > <a href='#' onclick=deletar('{$clientes->nome}',{$clientes->id})> Deletar </a> </span>
 						</div>\n";
 			}
