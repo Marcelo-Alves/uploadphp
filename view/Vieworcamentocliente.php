@@ -1,5 +1,5 @@
 <?php
-$painelcliente = ControllerPainelCliente::clientes();
+$painelcliente = ControllerPainelClientes::clientes();
 ?>
 <!DOCTYPE html>
 <html>

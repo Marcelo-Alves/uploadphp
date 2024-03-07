@@ -7,7 +7,24 @@
 </head>
 <body>
 	<div id="conteudo" name="conteudo">
-		<form method="post" action="painellogar/logar" >
+		<div>
+			<?php
+				$link = explode("/", $_SERVER["REQUEST_URI"]);
+				if(isset($link[2])):
+					if($link[2] == 0):
+				?>
+					<div style="border: 1px solid RED;color:red;width: 40%;text-align: center; margin:10px;"> POR FAVOR, PREENCHA TODOS OS CAMPOS</div>
+				<?php
+					endif;
+					if($link[2] == 1):
+						?>
+							<div style="border: 1px solid RED;color:red;width: 40%;text-align: center; margin:10px;"> LOGIN E SENHA NÃO CADASTRADO</div>
+						<?php
+					endif;
+				endif;
+			?>
+		</div>
+		<form method="post" action="<?php echo PROTOCOLO;?>/painellogar/logar" >
 			<label id="titulo" name="titulo">
 				<h3>Formulário de Login do Painel de Controle</h3>
 			</label>

@@ -5,7 +5,7 @@ include_once ('ModelBusca.php');
 class Cache  { 
     public static function GravaTudo($tabela) {
         try {
-            $cache = json_encode(ModelBusca::buscaTudo('*',$tabela,''));
+            $cache = json_encode(ModelBusca::buscaTudo('*',$tabela,'order by data_envio desc,idcliente'));
             $arquivo = fopen("./view/cache/cache".$tabela.".json",'w');
             fwrite($arquivo, $cache);
             fclose($arquivo);
