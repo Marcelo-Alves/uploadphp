@@ -1,9 +1,7 @@
 <?php
 include_once("./model/ModelBusca.php");
-
-class Orcamentocliente{
+class ControllerOrcamentocliente{
 	public static function orcamento(){
-
 		return ModelBusca::buscacache('orcamento');
 	}
 }

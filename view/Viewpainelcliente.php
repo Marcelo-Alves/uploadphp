@@ -2,8 +2,8 @@
 session_start();
 include_once ("./controller/Controllerorcamentocliente.php");
 
-$painelcliente = PainelCliente::clientes();
-$painelorcamento = OrcamentoCliente::orcamento();
+$painelcliente = ControllerPainelCliente::clientes();
+$painelorcamento = ControllerOrcamentocliente::orcamento();
 
 $orcamento=[];
 

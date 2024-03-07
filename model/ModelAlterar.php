@@ -9,7 +9,8 @@ class alterar  {
             $rs = mysql::conexao()->prepare($sql);  
             $rs->execute();
             echo  $sql;
-            Cache::GravaTudo($tabela);
+            Cache::GravaTudo($tabela,'');
+		    Cache::GravaTudo('orcamento','');
         } catch (Exception $ex) {
             echo $ex->getMessage() . " Erro sql ". $sql;
         }       

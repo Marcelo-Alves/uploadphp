@@ -1,6 +1,6 @@
 <?php
 include_once("./model/ModelBusca.php");
-class ControllerPainelClientes{
+class ControllerPainelCliente{
 	public static function clientes(){
 		return ModelBusca::buscacache('cliente');
 	}

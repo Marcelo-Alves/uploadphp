@@ -4,9 +4,7 @@
     include_once ('./model/ModelDeletar.php');
     include_once("./controller/ControllerValidarcampos.php");
     class ControllerCadastrarcliente{
-
         public static function cadastrar(){
-
             $validar = Validarcampos::validar($_POST);
 		    if(is_null($validar)){
                 $campos_inserir = array(
@@ -15,29 +13,23 @@
                     'empresa' 	      => $_POST['txtempresa'],	
                     'senha' 	      => $_POST['txtsenha']
                 );
-        
                 $model_campos="";
                 $model_valores="";
-                
                 foreach($campos_inserir as $campos => $nome){
                     $model_campos = $model_campos . $campos . ",";
                     $model_valores  = $model_valores . "'" . $nome . "',";
                 }
-                
                 $model_campos = substr($model_campos,0,-1);
                 $model_valores  = substr($model_valores,0,-1);
-                
                 inserir::inserirBanco('cliente',$model_campos,$model_valores) ;
                 header("Location: ".PROTOCOLO."/painelcliente");
                 die();
             }
             header("Location: ".PROTOCOLO."/cadastrarcliente/$validar");
             return null;
-
         }
 
         public static function alterar(){
-           // echo "Entro no Cadastrarcliente::alterar";
             $validar = Validarcampos::validar($_POST);
 		    if(is_null($validar)){
                 $campos_alterar = 'nome ="'. strtoupper($_POST['txtnome']).'",'.

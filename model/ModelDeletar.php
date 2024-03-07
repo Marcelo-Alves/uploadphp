@@ -8,7 +8,8 @@ class deletar  {
             $sql= "delete from $tabela WHERE $where;";	
             $rs = mysql::conexao()->prepare($sql);  
             $rs->execute();
-            Cache::GravaTudo($tabela);
+            Cache::GravaTudo($tabela,'');
+		    Cache::GravaTudo('orcamento','');
         } catch (Exception $ex) {
             echo $ex->getMessage() . " Erro sql ". $sql;
         }       

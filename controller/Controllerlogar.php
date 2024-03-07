@@ -2,9 +2,7 @@
 include_once("./model/ModelBusca.php");
 include_once("./model/ModelCache.php");
 include_once("./controller/ControllerValidarcampos.php");
-
 class Controllerlogar{
-
 	public static function logar(){
 		$validar = Validarcampos::validar($_POST);
 		if(is_null($validar) == false){
@@ -22,16 +20,16 @@ class Controllerlogar{
 		$_SESSION['id'] = $busca[0]->id;
 		$_SESSION['nome'] = $busca[0]->nome;
 		$_SESSION['empresa'] = $busca[0]->empresa;
-		$_SESSION['email'] = $busca[0]->email;
+		$_SESSION['email'] = $busca[0]->email;		
+		Cache::GravaTudo('cliente','');
+		Cache::GravaTudo('orcamento','order by data_envio desc');
 		header("Location: ".PROTOCOLO."/painelcliente/");
-		Cache::GravaTudo('cliente');
-		Cache::GravaTudo('orcamento');
-		return null;
-		
-		
+		return null;		
 	}
 
 	public static function deslogar(){
+		Cache::GravaTudo('cliente','');
+		Cache::GravaTudo('orcamento','order by data_envio desc');
 		session_start();
 		session_destroy(); 
 		header("Location: ".PROTOCOLO."/");

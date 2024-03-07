@@ -3,9 +3,9 @@ include_once ('conf/definicao.php');
 include_once ('mysql.php');
 include_once ('ModelBusca.php');
 class Cache  { 
-    public static function GravaTudo($tabela) {
+    public static function GravaTudo($tabela,$ordem=null) {
         try {
-            $cache = json_encode(ModelBusca::buscaTudo('*',$tabela,'order by data_envio desc,idcliente'));
+            $cache = json_encode(ModelBusca::buscaTudo('*',$tabela,$ordem));
             $arquivo = fopen("./view/cache/cache".$tabela.".json",'w');
             fwrite($arquivo, $cache);
             fclose($arquivo);

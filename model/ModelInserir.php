@@ -8,7 +8,8 @@ class inserir  {
             $sql= "INSERT INTO $tabela ($campos) values ($valores);";
             $rs = mysql::conexao()->prepare($sql);  			
             $rs->execute();		
-            Cache::GravaTudo($tabela);
+            Cache::GravaTudo($tabela,'order by idcliente');
+		    Cache::GravaTudo('orcamento','');
         } catch (Exception $ex) {
             echo $ex->getMessage();
             echo "<br>";
