@@ -7,6 +7,7 @@ class Controllerpainellogar{
 		/*echo "<pre>";
 		print_r($_POST);
 		echo "</pre>";*/
+		
 		$validar = Validarcampos::validar($_POST);
 		if(is_null($validar) == false){
 			header("Location:".PROTOCOLO."/painel/$validar");
