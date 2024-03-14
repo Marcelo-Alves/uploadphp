@@ -1,6 +1,5 @@
 <?php
     include_once ("./controller/Controllerorcamentocliente.php");
-    //$painelcliente = Controllerpainelclientes::clientes();
     $painelorcamentos = ControllerOrcamentocliente::orcamento();
     $url = ($_SERVER["REQUEST_URI"]=="/"?"/index":$_SERVER["REQUEST_URI"]);
     $u = explode('/',$url);
@@ -42,13 +41,17 @@
                 echo $date1->format('d/m/Y')."<br>";
                 echo $orcamento->respondido."<br>";
                 echo "</div>";
+                $orcamentoidcliente=$orcamento->idcliente;
+                $orcamentoid = $orcamento->id ;
             endif;        
     endforeach;
     ?>
-<form action="<?php echo PROTOCOLO;?>/Cadastrarresposta" method="post" enctype="multipart/form-data">
-        <input type="hidden" id="txtidcliente" name="txtidcliente" value="<?php echo $_SESSION['id'] ?>" />
-        Mensagem: <textarea name="txtresposta id="txtresposta" cols="70" rows="10"></textarea><br>
-        Imagens : <input type="file" name="txtimagens[]" id="txtup[]"  multiple /><br>
+<br>
+<form action="<?php echo PROTOCOLO;?>/Cadastrarresposta/cadastrar" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="txtidorcamento" name="txtidorcamento" value="<?php echo $orcamentoid ?>" />
+        <input type="hidden" id="txtidcliente" name="txtidcliente" value="<?php echo $orcamentoidcliente ?>" />
+        Mensagem: <textarea name="txtmensagem" id="txtmensagem" cols="70" rows="10"></textarea><br>
+        Imagens : <input type="file" name="txtupload[]" id="txtupload[]"  multiple /><br>
         <input type="submit" value="Salvar" /><br>
     </form>
 </body>

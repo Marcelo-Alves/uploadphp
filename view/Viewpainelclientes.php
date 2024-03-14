@@ -47,8 +47,11 @@ $painelorcamentos = ControllerOrcamentocliente::orcamento();
 							
 							$date1 = DateTime::createFromFormat('Y-m-d', $orcamentos->data_envio);
 							echo $date1->format('d/m/Y')."<br>";
-							echo $orcamentos->respondido."<br>";
-							echo "<a href='".PROTOCOLO."/responder/".$orcamentos->id."'>Responder</a><br>";
+							if(is_null($orcamentos->respondido)):
+								echo "<a href='".PROTOCOLO."/responder/".$orcamentos->id."'>Responder</a><br>";
+							else:
+								
+							endif;
 							echo "</div>";
 						endif;
 				endforeach;		

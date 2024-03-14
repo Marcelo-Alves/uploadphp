@@ -9,7 +9,6 @@ $orcamento=[];
 
 foreach($painelcliente as $cliente):
 	if($cliente->id == $_SESSION['id']):
-		
 		$cliid = $cliente->id;
 		$clinome = $cliente->nome;
 		$cliempresa = $cliente->empresa;
@@ -22,8 +21,6 @@ foreach($painelorcamento as $orcamentos):
 		$orcamento[] = $orcamentos;
 	endif;
 endforeach;
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,17 +38,15 @@ endforeach;
 <body>
 	<div id="conteudo" name="conteudo">
 		<?php
-				echo "<div id='divdados'> 
-						<span class='lbl' >
-						{$clinome}</span>
-						<span > {$cliempresa} </span>
-						<span > {$cliemail} </span>
-						<span > <a href='".PROTOCOLO."/alteracliente/{$cliid}'> Editar </a></span>
-						<span > <a href='".PROTOCOLO."/cadastraorcamento'> Adicionar Orçamento </a></span>
-						<span > <a href='".PROTOCOLO."/logar/deslogar'> Sair </a> </span>
-
-						</div>\n";
-
+			echo "<div id='divdados'> 
+					<span class='lbl' >
+					{$clinome}</span>
+					<span > {$cliempresa} </span>
+					<span > {$cliemail} </span>
+					<span > <a href='".PROTOCOLO."/alteracliente/{$cliid}'> Editar </a></span>
+					<span > <a href='".PROTOCOLO."/cadastraorcamento'> Adicionar Orçamento </a></span>
+					<span > <a href='".PROTOCOLO."/logar/deslogar'> Sair </a> </span>
+					</div>\n";
 		?>
 		<hr>
 		<div style="width: 70%;border:1px solid #000;">
@@ -75,8 +70,6 @@ endforeach;
 					echo $orc->respondido."<br>";
 					echo "</div>";
 				endforeach;
-
-				
 			?>
 		</div>
 	</div> 
