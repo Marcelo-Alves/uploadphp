@@ -3,8 +3,6 @@
     $painelorcamentos = ControllerOrcamentocliente::orcamento();
     $url = ($_SERVER["REQUEST_URI"]=="/"?"/index":$_SERVER["REQUEST_URI"]);
     $u = explode('/',$url);
- 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt_br">

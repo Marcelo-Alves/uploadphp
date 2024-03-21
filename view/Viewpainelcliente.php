@@ -1,10 +1,15 @@
 <?php
-session_start();
+if(session_start() == false):
+	session_start();
+endif;
+if(isset($_SESSION['id']) == false):
+	header("Location: ".PROTOCOLO."/");
+endif;
+
 include_once ("./controller/Controllerorcamentocliente.php");
 
 $painelcliente = ControllerPainelCliente::clientes();
 $painelorcamento = ControllerOrcamentocliente::orcamento();
-
 $orcamento=[];
 
 foreach($painelcliente as $cliente):
@@ -58,8 +63,7 @@ endforeach;
 					echo $orc->mensagem."<br>";
 					echo "</div>";
 					if(!is_null($orc->imagens)):
-						foreach(explode("|",$orc->imagens) as $imagens):
-							
+						foreach(explode("|",$orc->imagens) as $imagens):							
 							echo "<img src='".PROTOCOLO."/view/imagens/{$imagens}' width='70px' />";
 						endforeach;
 						echo "<br>";
@@ -67,7 +71,23 @@ endforeach;
 					
 					$date1 = DateTime::createFromFormat('Y-m-d', $orc->data_envio);
 					echo $date1->format('d/m/Y')."<br>";
-					echo $orc->respondido."<br>";
+					if(is_null($orc->respondido) == false):
+
+						//print_r($orc);/*
+						include_once ("./controller/Controllercadastrarresposta.php");
+						$resposta = Controllercadastrarresposta::buscaresposta($orc->respondido,$orc->idcliente);						
+						echo "<div style='color:red;' >";
+						
+						print_r($resposta);/*
+						echo $resposta->mensagem."<br>";
+						if(!is_null($resposta->upload)):						
+							echo "<img src='".PROTOCOLO."/view/resposta/{$resposta->upload}' width='70px' />\n";
+							echo "<br>";
+						endif;
+						//echo $resposta->data_resposta."<br>"; //*/
+						echo "</div>";
+
+					endif;
 					echo "</div>";
 				endforeach;
 			?>

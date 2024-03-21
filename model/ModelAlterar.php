@@ -8,11 +8,11 @@ class alterar  {
             $sql= "UPDATE $tabela SET $campos WHERE $where;";			
             $rs = mysql::conexao()->prepare($sql);  
             $rs->execute();
-            echo  $sql;
+           //echo  $sql;
             Cache::GravaTudo($tabela,'');
 		    Cache::GravaTudo('orcamento','');
         } catch (Exception $ex) {
-            echo $ex->getMessage() . " Erro sql ". $sql;
+            echo $ex->getMessage() . " Erro sql <br>". $sql;
         }       
     }
     

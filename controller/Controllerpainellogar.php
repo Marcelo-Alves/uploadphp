@@ -4,9 +4,6 @@ include_once("./model/ModelCache.php");
 include_once("./controller/ControllerValidarcampos.php");
 class Controllerpainellogar{
 	public static function logar(){
-		/*echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";*/
 		
 		$validar = Validarcampos::validar($_POST);
 		if(is_null($validar) == false){

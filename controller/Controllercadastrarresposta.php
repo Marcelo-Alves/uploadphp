@@ -7,20 +7,13 @@
     class Controllercadastrarresposta{
 
          public static function cadastrar(){
-            $nome_upload="";
+           $nome_upload="";
             if(isset($_FILES)){
                 for($i=0; $i < count($_FILES["txtupload"]["name"]);$i++){
                     $nome_upload .= upload::Gravar($_FILES["txtupload"],"./view/resposta/",$i) ."|";
                 }
                 $nome_upload = rtrim($nome_upload,'|');
             }
-            /*$nomes = explode("|",$nome_imagem);
-            echo "<pre>";
-            echo ($nome_imagem);
-            print_r ($nomes);
-            echo "</pre>";
-
-             /*/
 
             $validar = null ; //Validarcampos::validar($_POST);
 		    if(is_null($validar)){
@@ -40,15 +33,34 @@
                 
                 $model_campos = substr($model_campos,0,-1);
                 $model_valores  = substr($model_valores,0,-1);
+
                 inserir::inserirBanco('resposta',$model_campos,$model_valores) ;
-                alterar::alterarBanco('respondido=1','orcamento','id="'. $_POST['txtidorcamento'].'"');
-                Cache::GravaTudo('resposta','');
-                header("Location: ".PROTOCOLO."/painelclientes/");
+
+                $idrespostas = ModelBusca::buscaWhere('auto_increment-1 as id',
+                    'information_schema.tables',
+                   "table_name = 'resposta'and table_schema = 'upload'");
+             
+
+                $srt = alterar::alterarBanco('respondido='.$idrespostas[0]->id,'orcamento','id="'. $_POST['txtidorcamento'].'"');
+
+               Cache::GravaTudo('resposta','');
+                //header("Location: ".PROTOCOLO."/painelclientes/");
                 die();
-            }
+           }
             //header("Location: ".PROTOCOLO."/responder/".$_POST['txtidorcamento']."/$validar");
-            echo $validar;
-            return null;
+            //echo $validar;
+            //return null;
         }
-    }
+
+        public static function buscaresposta($idorcamento,$idcliente){
+            include_once("./model/ModelBusca.php");
+		    $respostas = ModelBusca::buscacache('resposta');
+            foreach($respostas as $resposta){
+                if($resposta->id== $idorcamento  && $resposta->idcliente == $idcliente){
+                    return $resposta;
+                }
+            }
+
+	}
+}
     

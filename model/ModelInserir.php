@@ -7,14 +7,16 @@ class inserir  {
         try {            
             $sql= "INSERT INTO $tabela ($campos) values ($valores);";            
             $rs = mysql::conexao()->prepare($sql);  			
-            $rs->execute();		
+            $rs->execute();	
             Cache::GravaTudo($tabela,'order by idcliente');
 		    Cache::GravaTudo('orcamento','');
            // echo $sql;
         } catch (Exception $ex) {
             echo $ex->getMessage();
             echo "<br>";
-            echo " Erro sql ". $sql;
+            echo " Erro sql1 <br>". $sql;
+            echo "<br>";
+            
         }        
     }
 }

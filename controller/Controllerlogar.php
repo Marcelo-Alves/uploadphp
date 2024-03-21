@@ -16,13 +16,16 @@ class Controllerlogar{
 			header("Location:".PROTOCOLO."/index/1");
 			return null;
 		}
-		session_start();
+		if(session_start() == false):
+			session_start();
+		endif;
 		$_SESSION['id'] = $busca[0]->id;
 		$_SESSION['nome'] = $busca[0]->nome;
 		$_SESSION['empresa'] = $busca[0]->empresa;
 		$_SESSION['email'] = $busca[0]->email;		
 		Cache::GravaTudo('cliente','');
 		Cache::GravaTudo('orcamento','order by data_envio desc');
+		Cache::GravaTudo('resposta','');
 		header("Location: ".PROTOCOLO."/painelcliente/");
 		return null;		
 	}
@@ -34,6 +37,5 @@ class Controllerlogar{
 		session_destroy(); 
 		header("Location: ".PROTOCOLO."/");
 		return null;
-
 	}
 }

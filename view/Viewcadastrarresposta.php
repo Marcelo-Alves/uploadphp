@@ -1,3 +1,0 @@
-<?php
-
-Controllercadastrarresposta::cadatrar();
